@@ -11,7 +11,7 @@ namespace DataAccess.Concrete.EntityFramework
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("");
+            optionsBuilder.UseSqlServer(@"Server=LAPTOP-2IVVGDBJ\SQLEXPRESS01;Database=AdminPanel;user id=sa;password=8066806619651998;");
         }
         public DbSet<OperationClaim> OperationClaims { get; set; }
 

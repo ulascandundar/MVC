@@ -15,5 +15,7 @@ namespace Business.Abstract
         List<OperationClaim> GetClaims(User user);
 
         User GetByMail(string email);
+
+        IResult Update(User user);
     }
 }

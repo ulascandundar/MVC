@@ -42,12 +42,12 @@ namespace WebAPI.Controllers
         public ActionResult Register(UserForRegisterDto userForRegisterDto)
         {
             var userExists = _authService.UserExists(userForRegisterDto.Email);
-            if (!userExists.Success)
+            if (userExists.Success)
             {
                 return BadRequest(userExists.Message);
             }
 
-            var registerResult = _authService.Register(userForRegisterDto, userForRegisterDto.Password);
+            var registerResult = _authService.Register(userForRegisterDto);
             var result = _authService.CreateAccessToken(registerResult.Data);
             if (result.Success)
             {
@@ -55,6 +55,26 @@ namespace WebAPI.Controllers
             }
 
             return BadRequest(result.Message);
+        }
+        [HttpPost("reset")]
+        public ActionResult Reset(string email,string pass,string fav)
+        {
+            var userExists = _authService.UserExists(email);
+            if (!userExists.Success)
+            {
+                return BadRequest(userExists.Message);
+            }
+
+
+            return Ok( _authService.PasswordReset(email, pass,fav));
+
+        }
+        [HttpPost("update")]
+        public IActionResult UserUpdate(UserForUpdateDto p)
+        {
+          
+            _authService.Update(p);
+            return Ok();
         }
     }
 }

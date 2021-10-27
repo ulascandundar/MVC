@@ -40,5 +40,11 @@ namespace Business.Concrete
         {
             return _userDal.GetClaims(user);
         }
+
+        public IResult Update(User user)
+        {
+            _userDal.Update(user);
+            return new SuccessResult("güncellendi");
+        }
     }
 }

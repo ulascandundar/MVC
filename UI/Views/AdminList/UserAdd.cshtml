@@ -1,0 +1,31 @@
+﻿@model Entities.DTOs.UserForRegisterDto
+
+@{
+    ViewData["Title"] = "UserAdd";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Ürün Ekleme</h1>
+<br />
+@using (Html.BeginForm("UserAdd", "AdminList", FormMethod.Post))
+{
+    @Html.Label("Email Adresi")
+    @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+    <br />
+    @Html.Label("Şifre")
+    @Html.TextBoxFor(x => x.Password, new { @class = "form-control" })
+    <br />
+    @Html.Label("İsim")
+    @Html.TextBoxFor(x => x.FirstName, new { @class = "form-control" })
+    <br />
+    @Html.Label("Soyisim")
+    @Html.TextBoxFor(x => x.LastName, new { @class = "form-control" })
+    <br />
+    @Html.Label("İlkokul öğretmeninizin adı")
+    @Html.TextBoxFor(x => x.Fav, new { @class = "form-control" })
+    <br />
+    @Html.Label("Statü")
+    @Html.CheckBoxFor(x=>x.Status)
+
+    <button class="btn btn-info">Ekle</button>
+}

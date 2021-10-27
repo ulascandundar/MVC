@@ -1,0 +1,80 @@
+﻿@model List<Core.Entities.Concrete.User>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<td>
+    <a class="btn btn-success" href="/AdminList/UserAdd">Admin Hesabı Ekle</a>
+
+</td>
+<table id="myTable" class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                İsim
+            </th>
+            <th>
+                Soyisim
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Status
+            </th>
+            <th>
+                Fav
+            </th>
+       
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName) 
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @*<a class="btn btn-danger" href="/Product/DeleteProduct/@item.Id">Sil</a>*@
+                    @Html.DisplayFor(modelItem=>item.Status)
+                    
+                </td>
+                <td>
+                    <a class="btn btn-success" href="/AdminList/UserGet/@item.Id" onclick="@TempData["UserId1"]=@item.Id">Güncelle</a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ]
+            });//myTable is the id of the table to be displayed as dataTable
+        });
+    </script>
+}

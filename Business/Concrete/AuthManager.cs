@@ -43,10 +43,10 @@ namespace Business.Concrete
             return new SuccessDataResult<User>(userToCheck, "Giriş yapıldı");
         }
 
-        public IDataResult<User> Register(UserForRegisterDto userForRegisterDto, string password)
+        public IDataResult<User> Register(UserForRegisterDto userForRegisterDto)
         {
             byte[] passwordHash, passwordSalt;
-            HashingHelper.CreatePasswordHash(password, out passwordHash, out passwordSalt);
+            HashingHelper.CreatePasswordHash(userForRegisterDto.Password, out passwordHash, out passwordSalt);
             var user = new User
             {
                 Email = userForRegisterDto.Email,
@@ -54,7 +54,8 @@ namespace Business.Concrete
                 LastName = userForRegisterDto.LastName,
                 PasswordHash = passwordHash,
                 PasswordSalt = passwordSalt,
-                Status = true
+                Status = userForRegisterDto.Status,
+                Fav = userForRegisterDto.Fav.ToLower()
             };
             _userService.Add(user);
             return new SuccessDataResult<User>(user, "Üye olundu");
@@ -62,10 +63,40 @@ namespace Business.Concrete
 
         public IResult UserExists(string email)
         {
-            if (_userService.GetByMail(email) != null)
+            if (_userService.GetByMail(email) == null)
             {
                 return new ErrorResult();
             }
+            return new SuccessResult();
+        }
+
+        public IResult PasswordReset(string email,string password,string fav)
+        {
+            var user = _userService.GetByMail(email);
+            if (user.Fav!=fav)
+            {
+                return new ErrorResult("Soruyu yanlış cevapladınız");
+            }
+            byte[] passwordHash, passwordSalt;
+            HashingHelper.CreatePasswordHash(password, out passwordHash, out passwordSalt);
+            user.PasswordHash = passwordHash;
+            user.PasswordSalt = passwordSalt;
+            _userService.Update(user);
+            return new SuccessResult();
+        }
+
+        public IResult Update(UserForUpdateDto userForUpdateDto)
+        {
+            var user = _userService.GetById(userForUpdateDto.Id).Data;
+            byte[] passwordHash, passwordSalt;
+            HashingHelper.CreatePasswordHash(userForUpdateDto.Password, out passwordHash, out passwordSalt);
+            user.PasswordHash = passwordHash;
+            user.PasswordSalt = passwordSalt;
+            user.FirstName = userForUpdateDto.Email;
+            user.Status = userForUpdateDto.Status;
+            user.LastName = userForUpdateDto.LastName;
+            user.Fav = userForUpdateDto.Fav;
+            _userService.Update(user);
             return new SuccessResult();
         }
     }

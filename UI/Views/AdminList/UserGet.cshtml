@@ -1,0 +1,31 @@
+﻿@model Entities.DTOs.UserForUpdateDto
+@{
+    ViewData["Title"] = "UserGet";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("UserUpdate", "AdminList", FormMethod.Post))
+{
+    @Html.Label("Id")
+    @Html.TextBoxFor(x => x.Id, new { @class = "form-control", @readonly = "readonly" })
+    <br />
+    @Html.Label("Email Adresi")
+    @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+    <br />
+    @Html.Label("Şifre")
+    @Html.TextBoxFor(x => x.Password, new { @class = "form-control" })
+    <br />
+    @Html.Label("İsim")
+    @Html.TextBoxFor(x => x.FirstName, new { @class = "form-control" })
+    <br />
+    @Html.Label("Soyisim")
+    @Html.TextBoxFor(x => x.LastName, new { @class = "form-control" })
+    <br />
+    @Html.Label("İlkokul öğretmeninizin adı")
+    @Html.TextBoxFor(x => x.Fav, new { @class = "form-control" })
+    <br />
+    @Html.Label("Statü")
+    @Html.CheckBoxFor(x => x.Status)
+
+    <button class="btn btn-info">Ekle</button>
+}

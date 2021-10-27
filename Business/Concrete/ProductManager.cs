@@ -3,6 +3,7 @@ using Business.BusinessAspects.Autofac;
 using Core.Aspects.Caching;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
+using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
@@ -14,12 +15,14 @@ namespace Business.Concrete
     public class ProductManager : IProductService
     {
         IProductDal _productDal;
-
         public ProductManager(IProductDal productDal)
         {
             _productDal = productDal;
+            
         }
-        [SecuredOperation("admin")]
+
+        
+        //[SecuredOperation("admin")]
         [CacheRemoveAspect("IProductService.Get")]
         public IResult Add(Product product)
         {
@@ -50,6 +53,13 @@ namespace Business.Concrete
         public IDataResult<List<Product>> GetListByCategory(int categoryId)
         {
             return new SuccessDataResult<List<Product>>(_productDal.GetAll(p => p.CategoryId == categoryId).ToList());
+        }
+
+        public IResult Delete(int id)
+        {
+            var product=_productDal.Get(p => p.Id == id);
+            _productDal.Delete(product);
+            return new SuccessResult("Silindi");
         }
     }
 }

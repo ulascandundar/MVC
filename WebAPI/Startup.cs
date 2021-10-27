@@ -58,6 +58,7 @@ namespace WebAPI
                 });
 
             services.AddDependencyResolvers(new ICoreModule[] { new CoreModule() });
+
             //services.AddSingleton<ICarService, CarManager>();
             //services.AddSingleton<IBrandService, BrandManager>();
             //services.AddSingleton<IColorService, ColorManager>();
