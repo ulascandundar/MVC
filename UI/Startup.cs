@@ -14,7 +14,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
-using UI.Hubs;
 
 namespace UI
 {
@@ -80,11 +79,11 @@ namespace UI
             //{
             //    route.MapHub<ChatHub>("/chathub");
             //});
-            app.UseEndpoints(endpoints =>
-            {
+            //app.UseEndpoints(endpoints =>
+            //{
                
-                endpoints.MapHub<ChatHub>("/chatHub");
-            });
+            //    endpoints.MapHub<ChatHub>("/chatHub");
+            //});
 
 
             app.UseMvc(routes =>

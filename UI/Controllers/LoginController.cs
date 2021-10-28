@@ -32,6 +32,7 @@ namespace UI.Controllers
         public IActionResult Index()
         {
             ViewBag.error = false;
+            ViewBag.deactive = false;
             return View();
         }
         [AllowAnonymous]
@@ -48,6 +49,8 @@ namespace UI.Controllers
                 var result1= _userService.GetByMail(userForLoginDto.Email).Status;
                 if (result1==false)
                 {
+                    ViewBag.error = false;
+                    ViewBag.deactive = true;
                     return View();
                 }
                 var userIdentity = new ClaimsIdentity(claims, "Login");
@@ -58,6 +61,7 @@ namespace UI.Controllers
               
 
             }
+            ViewBag.deactive = false;
             ViewBag.error = true;
             return View();
         }
