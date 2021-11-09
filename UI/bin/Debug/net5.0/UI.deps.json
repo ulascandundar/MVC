@@ -32,6 +32,8 @@
           "Microsoft.AspNetCore.Authentication.Cookies": "2.2.0",
           "Microsoft.AspNetCore.SignalR": "1.1.0",
           "Microsoft.AspNetCore.SignalR.Core": "1.1.0",
+          "Microsoft.EntityFrameworkCore": "3.1.11",
+          "Microsoft.EntityFrameworkCore.Tools": "3.1.11",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "5.0.2",
           "SendGrid": "9.22.0",
           "System.Linq.Dynamic.Core": "1.2.9",
@@ -939,7 +941,7 @@
           "lib/netcoreapp3.1/Microsoft.CodeAnalysis.Workspaces.dll": {}
         }
       },
-      "Microsoft.CSharp/4.5.0": {},
+      "Microsoft.CSharp/4.7.0": {},
       "Microsoft.Data.SqlClient/1.1.3": {
         "dependencies": {
           "Microsoft.Identity.Client": "3.0.8",
@@ -1011,6 +1013,18 @@
         }
       },
       "Microsoft.EntityFrameworkCore.Analyzers/3.1.11": {},
+      "Microsoft.EntityFrameworkCore.Design/3.1.11": {
+        "dependencies": {
+          "Microsoft.CSharp": "4.7.0",
+          "Microsoft.EntityFrameworkCore.Relational": "3.1.11"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.EntityFrameworkCore.Design.dll": {
+            "assemblyVersion": "3.1.11.0",
+            "fileVersion": "3.100.1120.56709"
+          }
+        }
+      },
       "Microsoft.EntityFrameworkCore.Relational/3.1.11": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "3.1.11"
@@ -1038,6 +1052,11 @@
         },
         "compile": {
           "lib/netstandard2.0/Microsoft.EntityFrameworkCore.SqlServer.dll": {}
+        }
+      },
+      "Microsoft.EntityFrameworkCore.Tools/3.1.11": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.Design": "3.1.11"
         }
       },
       "Microsoft.Extensions.Caching.Abstractions/3.1.11": {
@@ -1151,7 +1170,7 @@
       },
       "Microsoft.Identity.Client/3.0.8": {
         "dependencies": {
-          "Microsoft.CSharp": "4.5.0",
+          "Microsoft.CSharp": "4.7.0",
           "System.ComponentModel.TypeConverter": "4.3.0",
           "System.Net.NameResolution": "4.3.0",
           "System.Runtime.Serialization.Formatters": "4.3.0",
@@ -1225,7 +1244,7 @@
       },
       "Microsoft.IdentityModel.Tokens/6.12.0": {
         "dependencies": {
-          "Microsoft.CSharp": "4.5.0",
+          "Microsoft.CSharp": "4.7.0",
           "Microsoft.IdentityModel.Logging": "6.12.0",
           "System.Security.Cryptography.Cng": "4.5.0"
         },
@@ -2597,6 +2616,7 @@
           "Entities": "1.0.0",
           "FluentValidation": "9.5.1",
           "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
+          "Microsoft.EntityFrameworkCore": "3.1.11",
           "Microsoft.Extensions.DependencyInjection": "5.0.2"
         },
         "runtime": {
@@ -2617,6 +2637,7 @@
           "Microsoft.AspNetCore.Http": "2.2.2",
           "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
           "Microsoft.AspNetCore.Http.Features": "5.0.8",
+          "Microsoft.EntityFrameworkCore": "3.1.11",
           "Microsoft.EntityFrameworkCore.SqlServer": "3.1.11",
           "Microsoft.Extensions.Configuration.Binder": "5.0.0",
           "Microsoft.IdentityModel.Tokens": "6.12.0",
@@ -2634,7 +2655,8 @@
       },
       "DataAccess/1.0.0": {
         "dependencies": {
-          "Entities": "1.0.0"
+          "Entities": "1.0.0",
+          "Microsoft.EntityFrameworkCore": "3.1.11"
         },
         "runtime": {
           "DataAccess.dll": {}
@@ -2645,7 +2667,8 @@
       },
       "Entities/1.0.0": {
         "dependencies": {
-          "Core": "1.0.0"
+          "Core": "1.0.0",
+          "Microsoft.EntityFrameworkCore": "3.1.11"
         },
         "runtime": {
           "Entities.dll": {}
@@ -4679,12 +4702,12 @@
       "path": "microsoft.codeanalysis.workspaces.common/3.8.0",
       "hashPath": "microsoft.codeanalysis.workspaces.common.3.8.0.nupkg.sha512"
     },
-    "Microsoft.CSharp/4.5.0": {
+    "Microsoft.CSharp/4.7.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-kaj6Wb4qoMuH3HySFJhxwQfe8R/sJsNJnANrvv8WdFPMoNbKY5htfNscv+LHCu5ipz+49m2e+WQXpLXr9XYemQ==",
-      "path": "microsoft.csharp/4.5.0",
-      "hashPath": "microsoft.csharp.4.5.0.nupkg.sha512"
+      "sha512": "sha512-pTj+D3uJWyN3My70i2Hqo+OXixq3Os2D1nJ2x92FFo6sk8fYS1m1WLNTs0Dc1uPaViH0YvEEwvzddQ7y4rhXmA==",
+      "path": "microsoft.csharp/4.7.0",
+      "hashPath": "microsoft.csharp.4.7.0.nupkg.sha512"
     },
     "Microsoft.Data.SqlClient/1.1.3": {
       "type": "package",
@@ -4714,6 +4737,13 @@
       "path": "microsoft.entityframeworkcore.analyzers/3.1.11",
       "hashPath": "microsoft.entityframeworkcore.analyzers.3.1.11.nupkg.sha512"
     },
+    "Microsoft.EntityFrameworkCore.Design/3.1.11": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-aK57WY6LXUu0F40PjCQREnxKKMDYKU5/uCZtd9ms6WHpmsLHOqZN28DGDQZfnQfs1KtyEhG7iSB8lvxrtQ3Kgw==",
+      "path": "microsoft.entityframeworkcore.design/3.1.11",
+      "hashPath": "microsoft.entityframeworkcore.design.3.1.11.nupkg.sha512"
+    },
     "Microsoft.EntityFrameworkCore.Relational/3.1.11": {
       "type": "package",
       "serviceable": true,
@@ -4727,6 +4757,13 @@
       "sha512": "sha512-oZUmYUZpWmzy+uJBlAdQNbktiZjf1/dsTreAb8vmWHFfnZGZB7daHGbTCxlzTXduasrosyidp4AU99KwoOc1VA==",
       "path": "microsoft.entityframeworkcore.sqlserver/3.1.11",
       "hashPath": "microsoft.entityframeworkcore.sqlserver.3.1.11.nupkg.sha512"
+    },
+    "Microsoft.EntityFrameworkCore.Tools/3.1.11": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Zask6iZndp4RywI3VKpMxmSTk3gPqBCp1TIR/+og2hIbNtGMVEtKTWRDVIZgiE8G7qQTYr6kDAxeBJnS2qVBRQ==",
+      "path": "microsoft.entityframeworkcore.tools/3.1.11",
+      "hashPath": "microsoft.entityframeworkcore.tools.3.1.11.nupkg.sha512"
     },
     "Microsoft.Extensions.Caching.Abstractions/3.1.11": {
       "type": "package",

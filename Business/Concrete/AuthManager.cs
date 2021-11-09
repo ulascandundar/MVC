@@ -55,7 +55,8 @@ namespace Business.Concrete
                 PasswordHash = passwordHash,
                 PasswordSalt = passwordSalt,
                 Status = userForRegisterDto.Status,
-                Fav = userForRegisterDto.Fav.ToLower()
+                Fav = userForRegisterDto.Fav.ToLower(),
+                Path=userForRegisterDto.Path
             };
             _userService.Add(user);
             return new SuccessDataResult<User>(user, "Üye olundu");
@@ -96,6 +97,16 @@ namespace Business.Concrete
             user.Status = userForUpdateDto.Status;
             user.LastName = userForUpdateDto.LastName;
             user.Fav = userForUpdateDto.Fav;
+            _userService.Update(user);
+            return new SuccessResult();
+        }
+
+        public IResult UpdateNoPassword(UserForUpdateDto userForUpdateDto)
+        {
+            var user = _userService.GetById(userForUpdateDto.Id).Data;
+            user.FirstName = userForUpdateDto.FirstName;
+            user.LastName = userForUpdateDto.LastName;
+            user.Email = userForUpdateDto.Email;
             _userService.Update(user);
             return new SuccessResult();
         }

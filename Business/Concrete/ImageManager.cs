@@ -23,10 +23,12 @@ namespace Business.Concrete
             _imageDal = imageDal;
             _productService = productService;
         }
-        public IResult Add(IFormFile image, Image img)
+        public IResult Add(IFormFile image,int productId)
         {
+            Image img = new Image();
             img.ImagePath = FileOperationsHelper.Add(image);
             img.CreatedAt = DateTime.Now;
+            img.ProductId = productId;
             _imageDal.Add(img);
             return new SuccessResult("Image" + "Eklendi");
         }

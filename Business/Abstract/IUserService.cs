@@ -8,7 +8,7 @@ namespace Business.Abstract
 {
     public interface IUserService
     {
-        IDataResult<List<User>> GetAll();
+        IDataResult<List<User>> GetAll(int userId);
         IDataResult<User> GetById(int userId);
         IResult Add(User user);
 
@@ -17,5 +17,8 @@ namespace Business.Abstract
         User GetByMail(string email);
 
         IResult Update(User user);
+
+        IDataResult<List<User>> GetFollowers(int id);
+        IDataResult<List<User>> GetFollowing(int id);
     }
 }

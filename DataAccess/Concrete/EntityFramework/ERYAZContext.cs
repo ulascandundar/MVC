@@ -13,6 +13,9 @@ namespace DataAccess.Concrete.EntityFramework
         {
             optionsBuilder.UseSqlServer(@"Server=LAPTOP-2IVVGDBJ\SQLEXPRESS01;Database=AdminPanel;user id=sa;password=8066806619651998;");
         }
+
+ 
+        
         public DbSet<OperationClaim> OperationClaims { get; set; }
 
         public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
@@ -24,6 +27,10 @@ namespace DataAccess.Concrete.EntityFramework
         public DbSet<User> Users { get; set; }
 
         public DbSet<Category> Categories { get; set; }
+
+        public DbSet<UserToUser> UserToUsers { get; set; }
+
+
 
     }
 }

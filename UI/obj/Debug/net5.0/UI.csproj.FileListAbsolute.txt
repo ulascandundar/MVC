@@ -348,3 +348,4 @@ C:\Users\pc\source\repos\AdminPanel\UI\obj\Debug\net5.0\UI.dll
 C:\Users\pc\source\repos\AdminPanel\UI\obj\Debug\net5.0\ref\UI.dll
 C:\Users\pc\source\repos\AdminPanel\UI\obj\Debug\net5.0\UI.pdb
 C:\Users\pc\source\repos\AdminPanel\UI\obj\Debug\net5.0\UI.genruntimeconfig.cache
+C:\Users\pc\source\repos\AdminPanel\UI\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Design.dll

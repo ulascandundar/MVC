@@ -17,5 +17,7 @@ namespace Business.Abstract
         IResult PasswordReset(string email, string password,string fav);
 
         IResult Update(UserForUpdateDto userForUpdateDto);
+
+        IResult UpdateNoPassword(UserForUpdateDto userForUpdateDto);
     }
 }

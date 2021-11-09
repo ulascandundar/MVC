@@ -13,5 +13,7 @@ namespace Entities.DTOs
         public string LastName { get; set; }
         public string Fav { get; set; }
         public bool Status { get; set; }
+
+        public string Path { get; set; }
     }
 }

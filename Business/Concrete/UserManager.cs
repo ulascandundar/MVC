@@ -4,6 +4,7 @@ using Core.Utilities.Results;
 using DataAccess.Abstract;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Business.Concrete
@@ -11,9 +12,11 @@ namespace Business.Concrete
     public class UserManager : IUserService
     {
         IUserDal _userDal;
-        public UserManager(IUserDal userDal)
+        IUserToUserDal _userToUserDal;
+        public UserManager(IUserDal userDal, IUserToUserDal userToUserdal)
         {
             _userDal = userDal;
+            _userToUserDal = userToUserdal;
         }
         public IResult Add(User user)
         {
@@ -21,9 +24,9 @@ namespace Business.Concrete
             return new SuccessResult("Eklendi");
         }
 
-        public IDataResult<List<User>> GetAll()
+        public IDataResult<List<User>> GetAll(int userId)
         {
-            return new SuccessDataResult<List<User>>(_userDal.GetAll(), "Listelendi");
+            return new SuccessDataResult<List<User>>(_userDal.GetAll(i => i.Id != userId), "Listelendi");
         }
 
         public IDataResult<User> GetById(int userId)
@@ -39,6 +42,28 @@ namespace Business.Concrete
         public List<OperationClaim> GetClaims(User user)
         {
             return _userDal.GetClaims(user);
+        }
+
+        public IDataResult<List<User>> GetFollowers(int id)
+        {
+            var result = _userToUserDal.GetAll(u => u.UserId == id).Select(u => u.FollowerId);
+            List<User> users = new List<User>();
+            foreach (int item in result)
+            {
+                users.Add(_userDal.Get(u => u.Id == item));
+            }
+            return new SuccessDataResult<List<User>>(users);
+        }
+
+        public IDataResult<List<User>> GetFollowing(int id)
+        {
+            var result = _userToUserDal.GetAll(u => u.FollowerId == id).Select(u => u.UserId);
+            List<User> users = new List<User>();
+            foreach (int item in result)
+            {
+                users.Add(_userDal.Get(u => u.Id == item));
+            }
+            return new SuccessDataResult<List<User>>(users);
         }
 
         public IResult Update(User user)

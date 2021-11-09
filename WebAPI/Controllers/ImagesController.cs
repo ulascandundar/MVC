@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Core.Utilities.Helper;
+using Core.Utilities.Results;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -21,14 +23,22 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("add")]
-        public IActionResult Add(IFormFile image, [FromForm] Image img)
+        public IActionResult Add(IFormFile image,int productId)
         {
-            var result = _imageService.Add(image, img);
+            var result = _imageService.Add(image,productId);
             if (result.Success)
             {
                 return Ok(result);
             }
             return BadRequest(result);
+        }
+
+        [HttpPost("addimg")]
+        public IActionResult AddImg(IFormFile image)
+        {
+            var result = FileOperationsHelper.Add(image);
+            SuccessDataResult<string> res = new SuccessDataResult<string>(result);
+            return Ok(res);
         }
 
         [HttpPost("delete")]
@@ -57,6 +67,17 @@ namespace WebAPI.Controllers
         public IActionResult Get(int Id)
         {
             var result = _imageService.FindByID(Id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpGet("getall")]
+        public IActionResult GetAll()
+        {
+            var result = _imageService.GetAll();
             if (result.Success)
             {
                 return Ok(result);

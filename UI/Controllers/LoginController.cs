@@ -107,9 +107,10 @@ namespace UI.Controllers
                 message.Subject = "Şifre Değişimi";
                 message.Body = "Yeni şifreniz:" + newPassword;
                 SmtpClient client = new SmtpClient();
+                client.UseDefaultCredentials = false;
                 client.Credentials = new NetworkCredential("mvccodeeps@gmail.com", "MvcCodeeps123");
                 client.Port = 587;
-                client.UseDefaultCredentials = false;
+                
                 client.Host = "smtp.gmail.com";
                 client.EnableSsl = true;
                 client.Send(message);

@@ -76,5 +76,13 @@ namespace WebAPI.Controllers
             _authService.Update(p);
             return Ok();
         }
+
+        [HttpPost("updatenopassword")]
+        public IActionResult UserUpdateNoPassword(UserForUpdateDto p)
+        {
+
+            _authService.UpdateNoPassword(p);
+            return Ok();
+        }
     }
 }

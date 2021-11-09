@@ -10,7 +10,7 @@ namespace Business.Abstract
     public interface IImageService
     {
         IDataResult<List<Image>> GetAll();
-        IResult Add(IFormFile image, Image img);
+        IResult Add(IFormFile image,int productId);
         IResult Update(IFormFile image, Image img);
         IResult Delete(Image img);
         IDataResult<Image> Get(Image img);
