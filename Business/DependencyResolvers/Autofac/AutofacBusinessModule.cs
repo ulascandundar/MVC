@@ -23,6 +23,7 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<CategoryManager>().As<ICategoryService>().SingleInstance();
             builder.RegisterType<AuthManager>().As<IAuthService>().SingleInstance();
             builder.RegisterType<UserToUserManager>().As<IUserToUserService>().SingleInstance();
+            builder.RegisterType<MessageManager>().As<IMessageService>().SingleInstance();
             builder.RegisterType<JwtHelper>().As<ITokenHelper>();
 
             builder.RegisterType<EfProductDal>().As<IProductDal>().SingleInstance();
@@ -30,6 +31,7 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<EfUserDal>().As<IUserDal>().SingleInstance();
             builder.RegisterType<EfCategoryDal>().As<ICategoryDal>().SingleInstance();
             builder.RegisterType<EfUserToUserDal>().As<IUserToUserDal>().SingleInstance();
+            builder.RegisterType<EfMessageDal>().As<IMessageDal>().SingleInstance();
 
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
 
