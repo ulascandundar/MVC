@@ -16,8 +16,12 @@ namespace Business.Abstract
         IDataResult<AccessToken> CreateAccessToken(User user);
         IResult PasswordReset(string email, string password,string fav);
 
+        IResult PasswordResetNoFav(int id, string password);
+
         IResult Update(UserForUpdateDto userForUpdateDto);
 
         IResult UpdateNoPassword(UserForUpdateDto userForUpdateDto);
+
+        IResult PassowordRefresh(string email);
     }
 }

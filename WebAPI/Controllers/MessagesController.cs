@@ -52,5 +52,15 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+        [HttpGet("deletemessage")]
+        public IActionResult DeleteMessage(int messageId)
+        {
+            var result = _messageService.DeleteMessage(messageId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
     }
 }

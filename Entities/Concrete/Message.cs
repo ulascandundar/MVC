@@ -14,7 +14,7 @@ namespace Entities.Concrete
         public DateTime DateAdded { get; set; }
         public DateTime? DateRead { get; set; }
         public bool IsRead { get; set; }
-
+        public bool IsDeleted { get; set; }
 
     }
 }

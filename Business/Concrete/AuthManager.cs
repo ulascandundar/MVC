@@ -6,6 +6,8 @@ using Core.Utilities.Security.JWT;
 using Entities.DTOs;
 using System;
 using System.Collections.Generic;
+using System.Net;
+using System.Net.Mail;
 using System.Text;
 
 namespace Business.Concrete
@@ -86,6 +88,52 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
+        public IResult PasswordResetNoFav(int id, string password)
+        {
+            var user = _userService.GetById(id).Data;
+            byte[] passwordHash, passwordSalt;
+            HashingHelper.CreatePasswordHash(password, out passwordHash, out passwordSalt);
+            user.PasswordHash = passwordHash;
+            user.PasswordSalt = passwordSalt;
+            _userService.Update(user);
+            return new SuccessResult();
+        }
+
+        public IResult PassowordRefresh(string email)
+        {
+            var user = _userService.GetByMail(email);
+            Random rd = new Random();
+            string world = "ASDL7.JQXKJ123ULASNAC4589VW";
+            string newPassword = "";
+            for (int i = 0; i < 6; i++)
+            {
+                newPassword += world[rd.Next(world.Length)];
+            }
+            byte[] passwordHash, passwordSalt;
+            HashingHelper.CreatePasswordHash(newPassword, out passwordHash, out passwordSalt);
+            user.PasswordHash = passwordHash;
+            user.PasswordSalt = passwordSalt;
+            var result=_userService.Update(user);
+            if (result.Success)
+            {
+                MailMessage message = new MailMessage();
+                message.From = new MailAddress("mvccodeeps@gmail.com");
+                message.To.Add(email);
+                message.Subject = "Şifre Değişimi";
+                message.Body = "Yeni şifreniz:" + newPassword;
+                SmtpClient client = new SmtpClient();
+                client.UseDefaultCredentials = false;
+                client.Credentials = new NetworkCredential("mvccodeeps@gmail.com", "");
+                client.Port = 587;
+
+                client.Host = "smtp.gmail.com";
+                client.EnableSsl = true;
+                client.Send(message);
+                return new SuccessResult("Şifre değiştirildi");
+            }
+            return new ErrorResult();
+        }
+
         public IResult Update(UserForUpdateDto userForUpdateDto)
         {
             var user = _userService.GetById(userForUpdateDto.Id).Data;
@@ -110,5 +158,7 @@ namespace Business.Concrete
             _userService.Update(user);
             return new SuccessResult();
         }
+
+        
     }
 }

@@ -37,9 +37,17 @@ namespace Business.Concrete
             return new SuccessResult("Mesaj gönderildi");
         }
 
+        public IResult DeleteMessage(int messageId)
+        {
+            var message=_messageDal.Get(m => m.Id == messageId);
+            message.IsDeleted = true;
+            _messageDal.Update(message);
+            return new SuccessResult("Silindi");
+        }
+
         public IDataResult<List<MessageForReadUserDto>> GetInbox(int userId)
         {
-            var result=_messageDal.GetAll(m => m.RecipientId == userId);
+            var result=_messageDal.GetAll(m => m.RecipientId == userId&m.IsDeleted==false);
             List<MessageForReadUserDto> messageForReadUserDtos = new List<MessageForReadUserDto>();
             foreach (var item in result)
             {

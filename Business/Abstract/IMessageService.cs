@@ -12,5 +12,6 @@ namespace Business.Abstract
         IResult CreateMessage(MessageForCreateDto messageForCreateDto);
         IDataResult<List<MessageForReadUserDto>> GetInbox(int userId);
         IDataResult<Message> ShowMessage(int messageId);
+        IResult DeleteMessage(int messageId);
     }
 }

@@ -38,6 +38,16 @@ namespace Business.Concrete
             return new SuccessDataResult<List<UserToUser>>(result);
         }
 
+        public IResult IsFollow(int followerId, int userId)
+        {
+            var result = _userToUserDal.Get(u => u.FollowerId == followerId & u.UserId == userId);
+            if (result == null)
+            {
+                return new ErrorResult("Takip etmiyor");
+            }
+            return new SuccessResult("Takip ediyor");
+        }
+
         private IResult CheckUserToUserExists(int followerId,int userId)
         {
             var result = _userToUserDal.GetAll(u => u.FollowerId == followerId && u.UserId == userId).Any();

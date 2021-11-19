@@ -38,5 +38,17 @@ namespace WebAPI.Controllers
                 return Ok(_userToUser.GetAll());
             
         }
+
+        [HttpGet("isFollow")]
+        public IActionResult IsFollow(int followerId, int userId)
+        {
+            var result = _userToUser.IsFollow(followerId, userId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+
+        }
     }
 }

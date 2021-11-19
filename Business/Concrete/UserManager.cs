@@ -24,7 +24,7 @@ namespace Business.Concrete
             return new SuccessResult("Eklendi");
         }
 
-        public IDataResult<List<User>> GetAll(int userId)
+        public IDataResult<List<User>> GetAll(int? userId)
         {
             return new SuccessDataResult<List<User>>(_userDal.GetAll(i => i.Id != userId), "Listelendi");
         }

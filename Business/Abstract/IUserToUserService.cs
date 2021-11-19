@@ -11,6 +11,8 @@ namespace Business.Abstract
         IResult FollowUser(UserToUser userToUser);
         IDataResult<List<UserToUser>> GetAll();
 
+        IResult IsFollow(int followerId, int userId);
+
         
     }
 }

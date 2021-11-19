@@ -84,5 +84,26 @@ namespace WebAPI.Controllers
             _authService.UpdateNoPassword(p);
             return Ok();
         }
+
+        [HttpGet("passwordrefresh")]
+        public IActionResult PasswordRefresh(string email)
+        {
+            var result=_authService.PassowordRefresh(email);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        [HttpGet("passwordreset")]
+        public IActionResult PasswordResetNoFav(int id, string password)
+        {
+            var result = _authService.PasswordResetNoFav(id,password);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
     }
 }

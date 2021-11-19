@@ -22,7 +22,7 @@ namespace UI.Controllers
 
         public IActionResult Index()
         {
-            var datas = _userService.GetAll().Data;
+            var datas = _userService.GetAll(null).Data;
             
             
             return View(datas);
